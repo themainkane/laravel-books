@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\BookController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Api\TestController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +19,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/', [IndexController::class, 'index'])->name('index.index');
+Route::get('/about-us', [AboutController::class, 'aboutUs'])->name('about.about-us');
+Route::get('/api/test/array', [TestController::class, 'arrayResponse'])->name('array.response');
+Route::get('/api/test/model', [TestController::class, 'modelResponse'])->name('model.response');
+Route::get('/api/test/model', [TestController::class, 'collectionResponse'])->name('collection.response');
+
+Route::get('/home', [HomeController::class, 'home'])->middleware('auth')->name('home');
+
+
+//all admin routes
+Route::group(['middleware' => 'can:admin'], function () {
+
+    //any routes in here automatically get settings from the group
+    Route::get('/admin/books', [BookController::class, 'index'])->name('admin.books');
+    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.user');
 });
+// Route::get('/details/{book_id}');

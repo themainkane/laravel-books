@@ -1,0 +1,31 @@
+// @import variables
+html {
+    background-color: pink;
+}
+
+ @keyframes rotation {
+     from {
+         transform: rotate(0deg);
+     }
+
+     to {
+         transform: rotate(360deg);
+     }
+ }
+
+ .rotate {
+     animation: rotation 1s infinite linear;
+ }
+
+
+ #loader {
+     display: none;
+ }
+
+ #cat {
+     width: 50rem;
+ }
+
+ li {
+     list-style: url("./favicon-32x32.png");
+ }
