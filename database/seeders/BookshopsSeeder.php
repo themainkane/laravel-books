@@ -58,5 +58,6 @@ class BookshopsSeeder extends Seeder
             }
         }
 
+
     }
 }

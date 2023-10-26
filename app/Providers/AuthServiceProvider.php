@@ -24,12 +24,18 @@ class AuthServiceProvider extends ServiceProvider
         //
         Gate::define("admin", function ($user) {
             //decide if user is an administrator
-            if ($user->id == 1) {
+            if ($user->role == 'admin') {
                 return true;
             } else {
                 return false;
             }
         });
-        //or return false
+        Gate::define("user", function ($user) {
+            if ($user) {
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 }
